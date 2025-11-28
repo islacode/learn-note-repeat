@@ -1,0 +1,10 @@
+.next
+out
+node_modules
+build
+dist
+coverage
+*.lock
+*.snap
+
+next-env.d.ts

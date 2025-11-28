@@ -1,0 +1,18 @@
+{
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.mjs", "*.cjs", "*.tsx"],
+      "options": {
+        "singleQuote": true,
+        "jsxSingleQuote": false
+      }
+    }
+  ]
+}
