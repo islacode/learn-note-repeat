@@ -22,8 +22,14 @@
         "name": "next"
       }
     ],
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/constants": ["constants.ts"],
+      "@/supabase/*": ["utils/supabase/*"],
+      "@/helpers/*": ["utils/helpers/*"],
+      "@/components/*": ["components/*"],
+      "@/server/*": ["server/*"],
+      "@/styles/*": ["styles/*"]
     }
   },
   "include": [

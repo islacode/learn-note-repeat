@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+/* Default + themes (based on your palette, lightest → darkest) */
+:root {
+  color-scheme: light;
+  --bg: #fdf4ff;
+  --bg-alt: #fae8ff;
+  --surface: #f5d0fe;
+  --primary: #f0abfc;
+  --primary-strong: #e879f9;
+  --accent: #d946ef;
+  --accent-strong: #c026d3;
+  --border: #a21caf;
+  --border-strong: #86198f;
+  --text: #1f1020; /* dark text for readability */
+  --text-muted: #4b1550;
+}
+
+/* neonNights theme (default) */
+:root[data-theme="neonNights"] {
+  --bg: #fdf4ff;
+  --bg-alt: #fae8ff;
+  --surface: #f5d0fe;
+  --primary: #f0abfc;
+  --primary-strong: #e879f9;
+  --accent: #d946ef;
+  --accent-strong: #c026d3;
+  --border: #a21caf;
+  --border-strong: #86198f;
+  --text: #1f1020;
+  --text-muted: #4b1550;
+}
+
+/* Optional variant to demonstrate switching */
+:root[data-theme="arcticAurora"] {
+  --bg: #f0fdfa;
+  --bg-alt: #ccfbf1;
+  --surface: #99f6e4;
+  --primary: #5eead4;
+  --primary-strong: #2dd4bf;
+  --accent: #14b8a6;
+  --accent-strong: #0d9488;
+  --border: #0f766e;
+  --border-strong: #134e4a;
+  --text: #042f2e;
+  --text-muted: #115e59;
+}
+
+/* Optional utility if you don't have one already (Tailwind also has .sr-only) */
+.visually-hidden {
+  @apply sr-only;
+}
