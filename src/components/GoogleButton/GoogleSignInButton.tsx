@@ -11,7 +11,7 @@ export default function GoogleSignInButton() {
       type="submit"
       disabled={pending}
       aria-disabled={pending}
-      className="inline-flex items-center justify-center gap-3 rounded-md border px-4 py-2 text-sm font-medium bg-white text-[#3c4043] border-[#dadce0] hover:bg-[#f7f8f8] disabled:opacity-70 cursor-pointer"
+      className="inline-flex items-center justify-center gap-3 rounded-md border px-4 py-2 text-sm font-medium bg-[var(--google-surface)] text-[var(--google-text)] border-[var(--google-border)] hover:bg-[var(--google-hover)] disabled:opacity-70 cursor-pointer transition-colors"
     >
       <GoogleGIcon className="h-5 w-5" />
       {pending ? 'Redirecting…' : 'Sign in with Google'}
