@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Default + themes (based on your palette, lightest → darkest) */
 :root {
   color-scheme: light;
   --bg: #fdf4ff;
@@ -12,12 +11,25 @@
   --accent-strong: #c026d3;
   --border: #a21caf;
   --border-strong: #86198f;
-  --text: #1f1020; /* dark text for readability */
+  --text: #1f1020;
   --text-muted: #4b1550;
+  --google-surface: #ffffff;
+  --google-text: #3c4043;
+  --google-border: #dadce0;
+  --google-hover: var(--bg);
 }
 
-/* neonNights theme (default) */
+:root[data-mode="dark"] {
+  --google-surface: #000000;
+  --google-text: #ffffff;
+  --google-border: #5f6368;
+  --google-hover: var(--primary-strong);
+}
+
+/* ---------- Schemes (LIGHT) ---------- */
+/* neonNights (LIGHT) — same as fallback */
 :root[data-theme="neonNights"] {
+  color-scheme: light;
   --bg: #fdf4ff;
   --bg-alt: #fae8ff;
   --surface: #f5d0fe;
@@ -31,8 +43,9 @@
   --text-muted: #4b1550;
 }
 
-/* Optional variant to demonstrate switching */
+/* arcticAurora (LIGHT) — from your values */
 :root[data-theme="arcticAurora"] {
+  color-scheme: light;
   --bg: #f0fdfa;
   --bg-alt: #ccfbf1;
   --surface: #99f6e4;
@@ -46,7 +59,78 @@
   --text-muted: #115e59;
 }
 
-/* Optional utility if you don't have one already (Tailwind also has .sr-only) */
+/* ---------- DARK overrides per scheme ---------- */
+/* neonNights (DARK) */
+:root[data-mode="dark"][data-theme="neonNights"] {
+  color-scheme: dark;
+  --bg: #120a16;
+  --bg-alt: #190e1f;
+  --surface: #23112f;
+  --primary: #e879f9; /* keep chroma, shift usage on dark */
+  --primary-strong: #c026d3;
+  --accent: #d946ef;
+  --accent-strong: #a21caf;
+  --border: #6b21a8;
+  --border-strong: #4c1678;
+  --text: #f6ecfb;
+  --text-muted: #ddc2ef;
+}
+
+/* arcticAurora (DARK) */
+:root[data-mode="dark"][data-theme="arcticAurora"] {
+  color-scheme: dark;
+  --bg: #062a27;
+  --bg-alt: #0a3531;
+  --surface: #0f403a;
+  --primary: #2dd4bf;
+  --primary-strong: #14b8a6;
+  --accent: #0d9488;
+  --accent-strong: #0f766e;
+  --border: #0f766e;
+  --border-strong: #134e4a;
+  --text: #e6fffb;
+  --text-muted: #b5f3ea;
+}
+
+/* ---------- Base element styling (uses vars) ---------- */
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Optional transition for theme/mode changes */
+body {
+  @apply transition-colors duration-300;
+}
+
+/* Example utility patterns with CSS vars + Tailwind */
+.btn {
+  @apply inline-flex items-center justify-center rounded-lg px-3 py-2 text-sm font-semibold border transition-colors;
+  background: var(--primary);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn:hover {
+  background: var(--primary-strong);
+}
+
+/* Dark mode override */
+:root[data-mode="dark"] .btn {
+  background: var(--surface);
+  color: var(--text);
+}
+:root[data-mode="dark"] .btn:hover {
+  background: var(--bg-alt);
+}
+
+.card {
+  @apply rounded-2xl border p-4 shadow transition-colors;
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+/* a11y helper (Tailwind already provides .sr-only; kept for clarity) */
 .visually-hidden {
   @apply sr-only;
 }

@@ -1,0 +1,12 @@
+[
+  {
+    "key": "neonNights",
+    "label": "Neon Nights",
+    "swatches": ["#FDF4FF", "#FAE8FF", "#F5D0FE", "#F0ABFC", "#E879F9"]
+  },
+  {
+    "key": "arcticAurora",
+    "label": "Arctic Aurora",
+    "swatches": ["#f0fdfa", "#ccfbf1", "#99f6e4", "#5eead4", "#2dd4bf"]
+  }
+]
