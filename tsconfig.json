@@ -29,7 +29,8 @@
       "@/helpers/*": ["utils/helpers/*"],
       "@/components/*": ["components/*"],
       "@/server/*": ["server/*"],
-      "@/styles/*": ["styles/*"]
+      "@/styles/*": ["styles/*"],
+      "@/contexts/*": ["contexts/*"]
     }
   },
   "include": [
