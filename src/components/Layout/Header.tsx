@@ -8,17 +8,17 @@ import { useAuth } from '@/contexts/AuthContext';
 export default function Header() {
   const { user } = useAuth();
   return (
-    <header className="border-b bg-[color:var(--bg-alt)] border-[color:var(--border)]">
+    <header className="border-b bg-(--bg-alt) border-(--border)">
       <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-4">
         <div className="flex items-center gap-3">
           <div
-            className="h-10 w-10 rounded-xl border shadow border-[color:var(--border)]"
+            className="h-10 w-10 rounded-xl border shadow border-(--border)"
             style={{
               background: `linear-gradient(135deg, var(--primary), var(--accent))`,
             }}
             aria-label="Logo"
           />
-          <div className="text-base font-semibold text-[color:var(--text)]" aria-label="App name">
+          <div className="text-base font-semibold text-(--text)" aria-label="App name">
             learn-note-repeat
           </div>
         </div>

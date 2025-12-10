@@ -2,17 +2,6 @@
 
 :root {
   color-scheme: light;
-  --bg: #fdf4ff;
-  --bg-alt: #fae8ff;
-  --surface: #f5d0fe;
-  --primary: #f0abfc;
-  --primary-strong: #e879f9;
-  --accent: #d946ef;
-  --accent-strong: #c026d3;
-  --border: #a21caf;
-  --border-strong: #86198f;
-  --text: #1f1020;
-  --text-muted: #4b1550;
   --google-surface: #ffffff;
   --google-text: #3c4043;
   --google-border: #dadce0;
@@ -40,10 +29,10 @@
   --border: #a21caf;
   --border-strong: #86198f;
   --text: #1f1020;
-  --text-muted: #4b1550;
+  --text-muted: #8b52b3;
 }
 
-/* arcticAurora (LIGHT) — from your values */
+/* arcticAurora (LIGHT) */
 :root[data-theme="arcticAurora"] {
   color-scheme: light;
   --bg: #f0fdfa;
@@ -59,37 +48,84 @@
   --text-muted: #115e59;
 }
 
+/* violetMidnight (LIGHT) */
+:root[data-theme="violetMidnight"] {
+  color-scheme: light;
+  --bg: #f5e9ff;
+  --bg-alt: #ead6ff;
+  --surface: #d7b7ff;
+
+  --primary: #c084fc;
+  --primary-strong: #a855f7;
+  --accent: #7e22ce;
+  --accent-strong: #6b21a8;
+
+  --border: #5b21b6;
+  --border-strong: #4c1d95;
+
+  --text: #1a1027;
+  --text-muted: #6d28d9;
+}
+
 /* ---------- DARK overrides per scheme ---------- */
 /* neonNights (DARK) */
 :root[data-mode="dark"][data-theme="neonNights"] {
   color-scheme: dark;
-  --bg: #120a16;
-  --bg-alt: #190e1f;
-  --surface: #23112f;
-  --primary: #e879f9; /* keep chroma, shift usage on dark */
+
+  --bg: #08030d;
+  --bg-alt: #12051a;
+  --surface: #1a0924;
+
+  --primary: #7a1d8b;
   --primary-strong: #c026d3;
-  --accent: #d946ef;
-  --accent-strong: #a21caf;
+  --accent: #e879f9;
+  --accent-strong: #f9a8ff;
+
   --border: #6b21a8;
-  --border-strong: #4c1678;
-  --text: #f6ecfb;
-  --text-muted: #ddc2ef;
+  --border-strong: #4c1d95;
+
+  --text: #f8ecff;
+  --text-muted: #c4a2e8;
 }
 
 /* arcticAurora (DARK) */
 :root[data-mode="dark"][data-theme="arcticAurora"] {
   color-scheme: dark;
+
   --bg: #062a27;
   --bg-alt: #0a3531;
   --surface: #0f403a;
-  --primary: #2dd4bf;
-  --primary-strong: #14b8a6;
-  --accent: #0d9488;
-  --accent-strong: #0f766e;
+
+  --primary: #0d9488; /* darker teal base */
+  --primary-strong: #2dd4bf; /* brighter aqua for hover/active */
+
+  --accent: #14b8a6;
+  --accent-strong: #5eead4;
+
   --border: #0f766e;
   --border-strong: #134e4a;
+
   --text: #e6fffb;
   --text-muted: #b5f3ea;
+}
+
+/* violetMidnight (DARK) */
+:root[data-mode="dark"][data-theme="violetMidnight"] {
+  color-scheme: dark;
+  --bg: #0b0413;
+  --bg-alt: #140625;
+  --surface: #1f0b35;
+
+  --primary: #7e22ce;
+  --primary-strong: #a855f7;
+  --accent: #c084fc;
+  --accent-strong: #e879f9;
+
+  --border: #6d28d9;
+  --border-strong: #4c1d95;
+
+  --text: #f5ecff;
+  --text-muted: #d8b4fe;
 }
 
 /* ---------- Base element styling (uses vars) ---------- */
@@ -115,13 +151,42 @@ body {
   background: var(--primary-strong);
 }
 
-/* Dark mode override */
-:root[data-mode="dark"] .btn {
-  background: var(--surface);
-  color: var(--text);
+.btn.disabled {
+  background: var(--primary);
+  color: var(--text-muted);
 }
+.btn.disabled:hover {
+  background: var(--primary);
+  color: var(--text-muted);
+}
+
+/* Dark mode override */
+/*:root[data-mode="dark"] .btn {*/
+/*  background: var(--surface);*/
+/*  color: var(--text);*/
+/*}*/
+/*:root[data-mode="dark"] .btn:hover {*/
+/*  background: var(--bg-alt);*/
+/*}*/
+
+:root[data-mode="dark"] .btn {
+  background: var(--primary);
+  color: var(--text);
+  border-color: var(--border);
+}
+
 :root[data-mode="dark"] .btn:hover {
-  background: var(--bg-alt);
+  background: var(--primary-strong);
+}
+
+:root[data-mode="dark"] .btn.disabled {
+  background: var(--surface);
+  color: var(--text-muted);
+  border-color: var(--border-strong);
+}
+:root[data-mode="dark"] .btn.disabled:hover {
+  background: var(--surface);
+  color: var(--text-muted);
 }
 
 .card {
