@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import type { Session, User } from '@supabase/supabase-js';
 import { createSupabaseBrowserClient } from '@/supabase/client';
+import { updateOrCreateProfile } from '@/supabase/queries/updateOrCreateProfile';
 
 type AuthContextValue = {
   session: Session | null;
@@ -35,6 +36,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(currentSession);
       setUser(currentSession?.user ?? null);
       setLoading(false);
+
+      if (currentSession?.user) {
+        await updateOrCreateProfile(supabase, currentSession.user); // ← HERE (initial load)
+      }
     };
 
     initSession();
@@ -42,10 +47,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // 2) Listen to auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, newSession) => {
+    } = supabase.auth.onAuthStateChange(async (event, newSession) => {
       if (!isMounted) return;
       setSession(newSession);
       setUser(newSession?.user ?? null);
+
+      if (event === 'SIGNED_IN' && newSession?.user) {
+        await updateOrCreateProfile(supabase, newSession.user);
+      }
     });
 
     // 3) Cleanup
