@@ -1,11 +1,10 @@
 import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useTheme } from './ThemeProvider';
-import rawSchemes from './themes.json';
+import rawSchemes from './themes';
+import { Scheme } from './types';
 
-export type SchemeKey = 'neonNights' | 'arcticAurora';
-
-export type Scheme = {
-  key: SchemeKey;
+export type SchemeObject = {
+  key: Scheme;
   label: string;
   swatches: {
     light: string[];
@@ -15,7 +14,7 @@ export type Scheme = {
 
 export function useThemeSwitcher() {
   const { scheme, setScheme, mode, toggleMode } = useTheme();
-  const colorSchemes = rawSchemes as unknown as Scheme[];
+  const colorSchemes = rawSchemes as unknown as SchemeObject[];
 
   const buttonId = useId();
   const listboxId = useId();
