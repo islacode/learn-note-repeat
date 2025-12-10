@@ -48,7 +48,7 @@ export default function ThemeSwitcher() {
         >
           <span>{currentScheme.label}</span>
           <span className="inline-flex items-center gap-1" aria-hidden>
-            {currentScheme.swatches.slice(0, 5).map((hex) => (
+            {currentScheme.swatches[mode].slice(0, 5).map((hex) => (
               <span
                 key={hex}
                 className="h-4 w-4 rounded border"
@@ -67,7 +67,7 @@ export default function ThemeSwitcher() {
             tabIndex={-1}
             aria-labelledby={labelId}
             aria-activedescendant={activeId}
-            className="z-50 max-h-64 w-72 overflow-auto rounded-lg border border-[var(--border)] absolute left-0 top-full mt-2 bg-[var(--surface)] p-1 shadow-lg focus:outline-none space-y-1"
+            className="z-50 max-h-64 w-72 overflow-auto rounded-lg border border-(--border) absolute left-0 top-full mt-2 bg-(--surface) p-1 shadow-lg focus:outline-none space-y-1"
             onKeyDown={onListboxKeyDown}
           >
             {colorSchemes.map((s, i) => {
@@ -85,13 +85,13 @@ export default function ThemeSwitcher() {
                   onClick={() => applySelection(i)}
                   className={[
                     'flex cursor-pointer items-center justify-between gap-2 rounded-md px-2 py-2',
-                    selected ? 'ring-1 ring-[var(--border-strong)]' : '',
-                    active ? 'bg-[var(--bg-alt)]' : 'hover:bg-[var(--surface)]',
+                    selected ? 'ring-1 ring-(--accent-strong)' : '',
+                    active ? 'bg-(--primary-strong)' : '',
                   ].join(' ')}
                 >
-                  <span className="text-sm text-[var(--text)]">{s.label}</span>
+                  <span className="text-sm text-(--text)">{s.label}</span>
                   <span className="inline-flex items-center gap-1" aria-hidden>
-                    {s.swatches.map((hex) => (
+                    {s.swatches[mode].map((hex) => (
                       <span
                         key={hex}
                         className="h-4 w-4 rounded border"

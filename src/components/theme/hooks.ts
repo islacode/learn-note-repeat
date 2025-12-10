@@ -7,7 +7,10 @@ export type SchemeKey = 'neonNights' | 'arcticAurora';
 export type Scheme = {
   key: SchemeKey;
   label: string;
-  swatches: string[];
+  swatches: {
+    light: string[];
+    dark: string[];
+  };
 };
 
 export function useThemeSwitcher() {
