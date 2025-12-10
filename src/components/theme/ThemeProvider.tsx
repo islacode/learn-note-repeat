@@ -1,44 +1,29 @@
 'use client';
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 
-export type Scheme = 'neonNights' | 'arcticAurora';
-export type Mode = 'light' | 'dark';
-export type ThemeCtx = {
-  scheme: Scheme;
-  mode: Mode;
-  setScheme: (s: Scheme) => void;
-  toggleMode: () => void;
-};
+import { createContext, type ReactNode, useContext, useEffect, useMemo, useState } from 'react';
+import { OptionsType, setCookie } from 'cookies-next/client';
+import { Mode, Scheme, ThemeCtx } from './types';
+import { COOKIE_OPTIONS, COOKIE_THEME_NAME } from '@/constants';
 
 const ThemeContext = createContext<ThemeCtx | undefined>(undefined);
-const LS_KEY_SCHEME = 'ui.scheme';
-const LS_KEY_MODE = 'ui.mode';
 
-export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [scheme, setScheme] = useState<Scheme>(() =>
-    typeof window !== 'undefined'
-      ? (localStorage.getItem(LS_KEY_SCHEME) as Scheme) || 'neonNights'
-      : 'neonNights',
-  );
-  const [mode, setMode] = useState<Mode>(() =>
-    typeof window !== 'undefined'
-      ? (localStorage.getItem(LS_KEY_MODE) as Mode) || 'light'
-      : 'light',
-  );
+export interface ThemeProviderProps {
+  children: ReactNode;
+  initialScheme: Scheme;
+  initialMode: Mode;
+}
+
+export function ThemeProvider({ children, initialScheme, initialMode }: ThemeProviderProps) {
+  const [scheme, setScheme] = useState<Scheme>(initialScheme);
+  const [mode, setMode] = useState<Mode>(initialMode);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', scheme);
-    try {
-      localStorage.setItem(LS_KEY_SCHEME, scheme);
-    } catch {}
-  }, [scheme]);
-
-  useEffect(() => {
     document.documentElement.setAttribute('data-mode', mode);
     try {
-      localStorage.setItem(LS_KEY_MODE, mode);
+      setCookie(COOKIE_THEME_NAME, `${mode}:${scheme}`, COOKIE_OPTIONS as OptionsType);
     } catch {}
-  }, [mode]);
+  }, [scheme, mode]);
 
   const value = useMemo<ThemeCtx>(
     () => ({

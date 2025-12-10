@@ -32,3 +32,12 @@ export const OAUTH = {
 };
 
 export type OAuthProvider = (typeof OAUTH.PROVIDERS)[keyof typeof OAUTH.PROVIDERS];
+
+export const COOKIE_OPTIONS = {
+  path: '/',
+  maxAge: 60 * 60 * 24 * 365,
+  sameSite: 'lax',
+  secure: true, // in production over HTTPS
+};
+
+export const COOKIE_THEME_NAME = 'lnr_theme';
